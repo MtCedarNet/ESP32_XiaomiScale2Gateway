@@ -112,7 +112,6 @@ int postdata(char *params){
 class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
   void onResult(BLEAdvertisedDevice advertisedDevice) {
     char tmp[100],date[30];
-    // アドバタイジングデータを受け取ったとき
     BLEAddress addr = advertisedDevice.getAddress();
     if(addr.equals(targetaddr)){
       //Serial.print("Advertised Device found: ");
@@ -153,7 +152,7 @@ class MyAdvertisedDeviceCallbacks: public BLEAdvertisedDeviceCallbacks {
 void setup() {
   BLEDevice::init("Scale2Gateway");
   pBLEScan = BLEDevice::getScan(); //create new scan
-  pBLEScan->setActiveScan(false);  // パッシブスキャンに設定
+  pBLEScan->setActiveScan(false);  // passive scan
   pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
   Serial.begin(115200);
 
